@@ -39,6 +39,8 @@ Route::get('/v1/products', [ProductController::class, 'index']);
 Route::get('/v1/products/{id}', [ProductController::class, 'show']);
 Route::patch('/v1/products/{id}', [ProductController::class, 'update']);
 Route::delete('/v1/products/{id}', [ProductController::class, 'destroy']);
+Route::post("/v1/products/{id}/color-variants", [ProductController::class, 'colorVariants']);
+Route::post("/v1/products/{id}/size-variants", [ProductController::class, 'sizeVariants']);
 
 Route::get('/v1/users', [UserController::class, 'index']);
 Route::get('/v1/users/{id}', [UserController::class, 'show']);

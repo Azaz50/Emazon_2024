@@ -15,7 +15,7 @@ export const useSizeStore = defineStore("size", {
 			const url = '/api/v1/sizes';
 
 			return new Promise((resolve, reject) => {
-				axios.get(url, query).then((res) => {
+				axios.get(url, {params: query}).then((res) => {
 					console.log(res.data);
 					this.sizes = res.data.data;
 					resolve(res.data);

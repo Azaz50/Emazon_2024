@@ -14,7 +14,7 @@ export const useOrderStore = defineStore("order", {
 			const url = '/api/v1/orders';
 
 			return new Promise((resolve, reject) => {
-				axios.get(url, query).then((res) => {
+				axios.get(url, {params: query}).then((res) => {
 					console.log(res.data);
 					this.orders = res.data.data;
 					resolve(res.data);

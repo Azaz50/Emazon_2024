@@ -10,11 +10,11 @@ export const useCategoryStore = defineStore("category", {
 	},
 
 	actions: {
-		getProducts(query) {
+		getCategories(query) {
 			const url = '/api/v1/categories';
 
 			return new Promise((resolve, reject) => {
-				axios.get(url, query).then((res) => {
+				axios.get(url, {params: query}).then((res) => {
 					console.log(res.data);
 					this.categories = res.data.data;
 					resolve(res.data);

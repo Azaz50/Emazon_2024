@@ -14,7 +14,7 @@ export const useColorStore = defineStore("color", {
 			const url = '/api/v1/colors';
 
 			return new Promise((resolve, reject) => {
-				axios.get(url, query).then((res) => {
+				axios.get(url, {params: query}).then((res) => {
 					console.log(res.data);
 					this.colors = res.data.data;
 					resolve(res.data);

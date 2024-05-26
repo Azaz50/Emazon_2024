@@ -10,11 +10,11 @@ export const useProductStore = defineStore("productImage", {
 	},
 
 	actions: {
-		getProducts(query) {
+		getImageProducts(query) {
 			const url = '/api/v1/productImages';
 
 			return new Promise((resolve, reject) => {
-				axios.get(url, query).then((res) => {
+				axios.get(url, {params: query}).then((res) => {
 					console.log(res.data);
 					this.productImages = res.data.data;
 					resolve(res.data);
@@ -24,7 +24,7 @@ export const useProductStore = defineStore("productImage", {
 			})
 		},
 
-		getProduct(id) {
+		getImageProduct(id) {
 			const url = `/api/v1/productImages/${id}`;
 			return new Promise((resolve, reject) => {
 				axios.get(url).then((res) => {
