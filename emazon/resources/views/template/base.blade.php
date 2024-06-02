@@ -13,7 +13,9 @@
         <div class="max-w-6xl px-4 mx-auto" x-data="{ open: false }">
             <nav class="flex items-center justify-between py-4">
                 <a href="{{ Route('home.index') }}"
-                    class="text-3xl font-semibold leading-none text-blue-600 dark:text-blue-400">Emazon</a>
+                    class="text-3xl font-semibold leading-none text-blue-600 dark:text-blue-400">
+
+                    Emazon</a>
                 <div class="flex lg:hidden">
                     <button
                         class="flex items-center px-3 py-2 text-blue-600 border border-blue-200 rounded dark:text-gray-400 hover:text-blue-800 hover:border-blue-300 lg:hidden"
@@ -41,35 +43,23 @@
                     </li>
 
                 </ul>
-                <div class="items-center hidden pl-2 ml-auto mr-8 lg:flex lg:ml-0 lg:mr-0">
-                    <div class="flex px-6 py-2 border border-gray-700 rounded-full dark:border-gray-400">
-                        <input type="text"
-                            class="w-full pr-4 text-sm text-gray-700 bg-white dark:text-gray-400 dark:bg-gray-800 placeholder-text-100 "
-                            placeholder="search...">
-                        <button
-                            class="flex items-center text-gray-700 dark:text-gray-400 dark:hover:text-blue-500 hover:text-blue-700">
-                            <span class="mr-1 ml-2">Go</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-                            </svg>
-                        </button>
-                    </div>
+                <div class="items-center hidden pl-2 ml-auto mr-8 lg:flex lg:ml-0 lg:mr-0 gap-8">
+
+
+                    @if (auth()->check())
+                        <a href="/profile"
+                            class="text-sm font-semibold leading-6 text-gray-400 ">{{ auth()->user()->first_name }}</a>
+                        <a href="/carts" class="text-sm font-semibold leading-6 text-gray-400">Cart</a>
+                        <form action="{{ route('auth.logout') }}" method="post">
+                            @csrf
+                            <button type="submit" href="{{ route('auth.logout') }}"
+                                class="text-sm font-semibold leading-6 text-gray-400">Logout</button>
+                        </form>
+                    @else
+                        <a href="{{ route('auth.login') }}" class="text-sm font-semibold leading-6 text-gray-400">Log in
+                            <span aria-hidden="true">&rarr;</span></a>
+                    @endif
                 </div>
-                @if (auth()->check())
-                    <a href="/profile"
-                        class="text-sm font-semibold leading-6 text-gray-400">{{ auth()->user()->first_name }}</a>
-                    <a href="/carts" class="text-sm font-semibold leading-6 text-gray-400">Cart</a>
-                    <form action="{{ route('auth.logout') }}" method="post">
-                        @csrf
-                        <button type="submit" href="{{ route('auth.logout') }}"
-                            class="text-sm font-semibold leading-6 text-gray-400">Logout</button>
-                    </form>
-                @else
-                    <a href="{{ route('auth.login') }}" class="text-sm font-semibold leading-6 text-gray-400">Log in
-                        <span aria-hidden="true">&rarr;</span></a>
-                @endif
             </nav>
             <!-- Mobile Sidebar -->
             <div class="fixed inset-0 w-full bg-gray-800 opacity-25 dark:bg-gray-400 lg:hidden"
